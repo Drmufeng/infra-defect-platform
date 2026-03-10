@@ -1,0 +1,12 @@
+.git
+.idea
+.venv
+.venv311
+apps/*/node_modules
+apps/*/dist
+storage/uploads
+storage/inference-results
+storage/reports
+datasets/raw
+datasets/processed
+*.log

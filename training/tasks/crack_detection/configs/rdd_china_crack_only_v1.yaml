@@ -1,0 +1,11 @@
+# YOLO 训练数据配置文件
+# path 指向处理完成后的数据集根目录。
+path: B:/dome/datasets/processed/rdd_china_crack_only_v1
+
+# 训练集与验证集图片目录，路径相对上面的 path。
+train: images/train
+val: images/val
+
+# names 定义类别编号与名称。
+names:
+  0: crack

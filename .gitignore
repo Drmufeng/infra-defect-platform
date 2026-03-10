@@ -1,0 +1,55 @@
+# Python 虚拟环境
+.venv/
+.venv311/
+
+# Python 缓存与测试产物
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Node 与构建产物
+apps/*/node_modules/
+apps/*/dist/
+
+# 环境变量
+.env
+.env.*
+!.env.example
+!*.env.example
+
+# 平台运行产物
+storage/uploads/*
+!storage/uploads/.gitkeep
+storage/inference-results/*
+!storage/inference-results/.gitkeep
+storage/reports/*
+!storage/reports/.gitkeep
+
+# 数据集原始与处理数据通常较大，不建议纳入版本库
+datasets/raw/*
+!datasets/raw/.gitkeep
+datasets/processed/*
+!datasets/processed/.gitkeep
+
+# 训练临时产物与通用导出
+training/**/runs/
+training/**/cache/
+training/**/weights/*/weights/
+training/**/weights/*/*.png
+training/**/weights/*/*.jpg
+training/**/weights/*/*.yaml
+training/**/weights/*/*.csv
+training/**/reports/test_images_inference/predict_runs/
+yolov8s.pt
+training/**/scripts/*.pt
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# JetBrains
+.idea/
