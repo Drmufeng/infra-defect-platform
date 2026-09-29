@@ -2,6 +2,16 @@
 
 <p align="center"><img src="docs/assets/retro-anime-banner.svg" alt="道路、桥梁与房屋病害检测主题装饰" width="760"></p>
 
+<div align="center">
+
+[![Frontend](https://img.shields.io/badge/Frontend-Vue3%20%2B%20TDesign-42B883?style=flat-square)](apps/admin-web)
+[![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square)](apps/api-server)
+[![License](https://img.shields.io/badge/License-MIT-2D8CFF?style=flat-square)](LICENSE)
+
+</div>
+
+## 项目介绍
+
 这是一个把病害检测结果接入业务平台的全栈项目。当前先做道路裂缝检测，仓库里同时保留数据处理、训练、推理、管理端、客户端和后端服务，方便从图片实验走到项目交付。
 
 目前使用 RDD2022 China_MotorBike 数据集中的裂缝类别，模型训练工作区已经按任务重新整理。平台端采用 Vue 3 + TDesign，后端采用 FastAPI + PostgreSQL，接口按 admin、client、system 分层。
@@ -87,6 +97,15 @@ npm run dev
 
 客户端位于 apps/client-web/，启动方式相同。默认管理端端口为 5500，客户端端口为 5180。
 
+### 从哪里开始
+
+| 你准备做什么 | 建议入口 |
+| --- | --- |
+| 第一次运行项目 | 先准备数据，再启动后端和管理端 |
+| 查看训练流程 | training/tasks/crack_detection/ |
+| 查看平台结构 | [项目结构说明](项目结构说明.md) |
+| 准备部署 | [云部署与环境配置](docs/云部署与环境配置.md) |
+
 ## 文档入口
 
 - [项目结构说明](项目结构说明.md)
@@ -105,3 +124,7 @@ npm run dev
 ## 本地演示配置
 
 仓库中的 admin / 1234 只用于本地开发初始化。部署到真实环境前，请修改管理员密码、数据库账号和所有环境变量。
+
+## 许可
+
+本项目采用 [MIT License](LICENSE)。数据集和第三方依赖按各自的许可证使用。

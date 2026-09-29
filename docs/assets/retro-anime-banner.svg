@@ -1,28 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
-  <title id="title">基础设施病害检测复古动画装饰</title>
-  <desc id="desc">道路裂缝、桥梁和戴安全帽的小猫组成的复古二次元横幅。</desc>
-  <rect x="8" y="8" width="744" height="164" rx="26" fill="#F7E8D1" stroke="#43322D" stroke-width="3"/>
-  <path d="M28 136 C135 113 205 151 302 132 S500 112 732 139" fill="none" stroke="#D96D50" stroke-width="10" stroke-linecap="round" opacity=".55"/>
-  <path d="M28 141 C135 118 205 156 302 137 S500 117 732 144" fill="none" stroke="#6BA5A0" stroke-width="3" stroke-dasharray="5 9"/>
-  <g stroke="#43322D" stroke-linejoin="round">
-    <path d="M46 115 L94 93 L123 104 L151 88 L187 108 L213 95" fill="none" stroke-width="5"/>
-    <path d="M75 122 L86 105 L97 118 L110 97 L122 119" fill="none" stroke="#D96D50" stroke-width="4"/>
-    <path d="M258 123 Q294 94 330 123 M266 123 V137 M322 123 V137 M249 123 H339" fill="none" stroke-width="4"/>
-    <circle cx="56" cy="48" r="14" fill="#F4B64A" stroke-width="2"/>
-    <path d="M56 22 V12 M56 84 V74 M30 48 H20 M92 48 H82" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180" role="img" aria-labelledby="infra-title infra-desc">
+  <title id="infra-title">Infrastructure defect platform workflow</title>
+  <desc id="infra-desc">A four-step workflow from road images and crack detection to an API service and web platform.</desc>
+  <defs><marker id="infra-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#64748B"/></marker></defs>
+  <rect x="8" y="8" width="744" height="164" rx="12" fill="#F8FAFC" stroke="#CBD5E1"/>
+  <g stroke="#94A3B8" stroke-width="2" marker-end="url(#infra-arrow)"><path d="M166 104H196"/><path d="M342 104H372"/><path d="M518 104H548"/></g>
+  <text x="30" y="34" fill="#0F172A" font-family="Arial,sans-serif" font-size="18" font-weight="700">INFRA DEFECT PLATFORM</text>
+  <text x="30" y="54" fill="#64748B" font-family="Arial,sans-serif" font-size="11">image · detection · service · records</text>
+  <g font-family="Arial,sans-serif" font-size="11" fill="#0F172A">
+    <rect x="28" y="72" width="138" height="64" rx="8" fill="#FFF7ED" stroke="#FDBA74"/>
+    <path d="M43 119 L63 97 L80 112 L99 91 L145 119z" fill="#FED7AA" stroke="#C2410C" stroke-width="2"/>
+    <path d="M77 116 l8-12 6 8 8-14 7 15" fill="none" stroke="#C2410C" stroke-width="3"/>
+    <text x="43" y="130">road images</text>
+    <rect x="204" y="72" width="138" height="64" rx="8" fill="#FFF1F2" stroke="#FDA4AF"/>
+    <rect x="222" y="85" width="74" height="35" fill="none" stroke="#E11D48" stroke-width="2"/><path d="M236 113 l9-17 9 10 13-14" fill="none" stroke="#E11D48" stroke-width="3"/>
+    <text x="222" y="130">crack detection</text>
+    <rect x="380" y="72" width="138" height="64" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+    <rect x="400" y="86" width="34" height="26" rx="3" fill="#2563EB"/><circle cx="417" cy="99" r="5" fill="#DBEAFE"/><path d="M446 90H497M446 101H489M446 112H480" stroke="#2563EB" stroke-width="3"/>
+    <text x="400" y="130">FastAPI service</text>
+    <rect x="556" y="72" width="176" height="64" rx="8" fill="#F0FDFA" stroke="#5EEAD4"/>
+    <rect x="580" y="86" width="76" height="34" rx="3" fill="#CCFBF1" stroke="#0F766E" stroke-width="2"/><path d="M588 112h60" stroke="#0F766E" stroke-width="2"/><path d="M671 91h38M671 101h29M671 111h34" stroke="#0F766E" stroke-width="3"/>
+    <text x="580" y="130">admin · client · audit</text>
   </g>
-  <g transform="translate(500 32)" stroke="#43322D" stroke-width="3" stroke-linejoin="round">
-    <path d="M-37 31 Q0 8 37 31 L29 43 Q0 27-29 43z" fill="#D96D50"/>
-    <path d="M-35 45 L-27 20 L-8 30 L10 20 L31 45 C35 78 15 99 0 99 C-19 99 -39 77 -35 45z" fill="#F3C7A7"/>
-    <path d="M-35 45 L-27 20 L-8 30 L10 20 L31 45 Q0 29-35 45z" fill="#F4B64A"/>
-    <ellipse cx="-13" cy="61" rx="4" ry="7" fill="#43322D" stroke="none"/><ellipse cx="13" cy="61" rx="4" ry="7" fill="#43322D" stroke="none"/>
-    <path d="M-6 75 q6 5 12 0 M-17 84 Q0 76 17 84 L12 101 H-12z" fill="none"/>
-    <path d="M-20 91 l-24 15 M20 91 l24 15" fill="none"/>
-  </g>
-  <g transform="translate(622 53)" stroke="#43322D" stroke-width="3" stroke-linejoin="round">
-    <path d="M-28 40 Q0 11 28 40" fill="none"/><path d="M-23 40 Q0 20 23 40 V80 H-23z" fill="#F3C7A7"/>
-    <path d="M-23 42 Q0 22 23 42 V51 H-23z" fill="#6BA5A0"/><rect x="-7" y="59" width="14" height="21" fill="#D96D50"/><path d="M-33 79 H33" fill="none"/>
-  </g>
-  <text x="260" y="50" fill="#43322D" font-size="21" font-family="cursive" font-weight="700">INFRA WATCH</text>
-  <text x="260" y="75" fill="#43322D" font-size="14" font-family="sans-serif">ROADS · BRIDGES · BUILDINGS</text>
 </svg>
