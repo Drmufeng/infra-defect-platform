@@ -1,123 +1,107 @@
 # 基础设施病害智能检测与管理平台
 
-<p align="center"><img src="docs/assets/retro-anime-banner.svg" alt="复古二次元风格装饰" width="760"></p>
+<p align="center"><img src="docs/assets/retro-anime-banner.svg" alt="道路、桥梁与房屋病害检测主题装饰" width="760"></p>
 
-这是一个面向道路、桥梁和房屋病害管理的全栈项目。当前先落地道路裂缝检测，仓库同时保留训练工作区、管理端、客户端和后端服务，方便从模型实验推进到平台交付。
+这是一个把病害检测结果接入业务平台的全栈项目。当前先做道路裂缝检测，仓库里同时保留数据处理、训练、推理、管理端、客户端和后端服务，方便从图片实验走到项目交付。
 
-目前已经整理 RDD2022 China_MotorBike 单类别裂缝数据集，完成裂缝检测任务工作区重组和第一版训练结果归档；管理端与客户端采用 Vue3 + TDesign，后端采用 FastAPI + PostgreSQL，并按 `admin`、`client`、`system` 划分接口路由。
-## 目录总览
+目前使用 RDD2022 China_MotorBike 数据集中的裂缝类别，模型训练工作区已经按任务重新整理。平台端采用 Vue 3 + TDesign，后端采用 FastAPI + PostgreSQL，接口按 admin、client、system 分层。
 
-- `apps/`：平台应用层目录
-  - `apps/admin-web/`：管理端 Web
-  - `apps/client-web/`：客户端 Web（MVP）
-  - `apps/api-server/`：后端接口、数据库与平台服务
-- `datasets/`：原始数据、处理后数据、测试图片
-- `training/`：训练工作区，按任务方向组织脚本、配置、权重、报告与文档
-- `storage/`：平台运行产物统一出口（uploads/inference-results/reports）
-- `docs/`：平台级文档、数据库设计、迁移说明等
-- `scripts/`：平台级脚本（初始化、部署、同步等）
+## 项目流程
 
-## 关键文档
+~~~mermaid
+flowchart LR
+    A[道路图片] --> B[裂缝检测模型]
+    B --> C[推理结果与图片]
+    C --> D[FastAPI 服务]
+    D --> E[管理端]
+    D --> F[客户端]
+    D --> G[资产与审计记录]
+~~~
 
-- 项目结构：`项目结构说明.md`
-- 版本记录：`docs/版本记录.md`
-- 数据库设计：`docs/数据库设计.md`
-- 三端架构：`docs/三端架构与迁移计划.md`
-- 云部署与环境配置：`docs/云部署与环境配置.md`
-- 云服务器部署流程：`docs/云服务器部署流程.md`
-- 目录收缩说明：`docs/目录收缩与迁移说明.md`
-- 裂缝检测任务文档：`training/tasks/crack_detection/docs/训练记录与优化建议.md`
+## 已实现的部分
 
-## 当前状态
+- 整理 RDD2022 China_MotorBike 单类别裂缝数据集。
+- 在 training/tasks/crack_detection/ 中集中保存数据脚本、训练配置、权重和报告。
+- 搭建 apps/admin-web/ 管理端和 apps/client-web/ 客户端 Web 工程。
+- 搭建 apps/api-server/ 后端基础结构，包含登录、文件资产和审计日志能力。
+- 按 admin、client、system 组织接口路由，并完成 PostgreSQL 数据库设计文档。
 
-- 已完成 `RDD2022 China_MotorBike` 的单类别裂缝数据集整理
-- 已完成裂缝检测任务工作区重组：`training/tasks/crack_detection/`
-- 已得到第一版训练结果，产物位于 `training/tasks/crack_detection/weights/rdd_china_crack_only_v1/`
-- 已完成三端目录重构：`apps/admin-web/`、`apps/client-web/`、`apps/api-server/`
-- 已搭建基于 `Vue3 + TDesign` 的后台管理端骨架与客户端 Web 基础工程
-- 已搭建基于 `FastAPI + PostgreSQL` 的后端基础结构，并完成 `admin/client/system` 路由分层
-- 已新增后台登录、文件资产与审计日志能力，管理端可直接展示关键平台资产与关键操作记录
-- 已完成 PostgreSQL 数据库结构设计文档，当前数据库名为 `infra_defect_platform`
+## 目录
+
+~~~text
+apps/
+├── admin-web/       # 管理端 Web
+├── client-web/      # 客户端 Web（MVP）
+└── api-server/      # FastAPI、数据库和平台服务
+datasets/            # 原始数据、处理后数据和测试图片
+training/            # 数据处理、训练、推理和实验报告
+storage/             # uploads、inference-results、reports 等运行产物
+docs/                # 架构、数据库、部署和迁移文档
+scripts/             # 初始化、部署和同步脚本
+~~~
 
 ## 快速开始
 
-说明：当前项目正式根目录为 `B:\infra-defect-platform`。默认开发环境使用根目录虚拟环境 `B:\infra-defect-platform\.venv311\Scripts\python.exe`，前端依赖分别安装在 `apps/admin-web/` 与 `apps/client-web/`。
+项目根目录需要有 Python 3.11 虚拟环境。下面的命令在仓库根目录执行。
 
-### 1. 生成数据集
+### 准备数据和训练
 
-```bash
+~~~bash
 python training/tasks/crack_detection/scripts/prepare_rdd_dataset.py
-```
-
-### 2. 启动训练
-
-```bash
 python training/tasks/crack_detection/scripts/train_rdd_crack_v1.py
-```
+~~~
 
-### 3. 查看训练结果
+训练结果和日志位于 training/tasks/crack_detection/weights/rdd_china_crack_only_v1/ 与 training/tasks/crack_detection/reports/。
 
-- 训练权重：`training/tasks/crack_detection/weights/rdd_china_crack_only_v1/weights/`
-- 指标图表：`training/tasks/crack_detection/weights/rdd_china_crack_only_v1/`
-- 自动训练日志：`training/tasks/crack_detection/reports/training_run_history.md`
+### 对测试图片推理
 
-### 4. 对独立测试图片做推理
+将图片放入 datasets/test_images/manual/，再运行：
 
-先将测试图片放到：
-
-```text
-datasets/test_images/manual/
-```
-
-然后运行：
-
-```bash
+~~~bash
 python training/tasks/crack_detection/scripts/run_test_images_inference.py
-```
+~~~
 
-推理结果会输出到：
+结果写入 training/tasks/crack_detection/reports/test_images_inference/。
 
-- `training/tasks/crack_detection/reports/test_images_inference/predict_runs/manual_test_best`
+### 启动后端
 
-### 5. 启动平台后端
-
-推荐方式一：先进入 `apps/api-server/` 再启动。
-
-```bash
+~~~bash
 cd apps/api-server
 python -m app.db.init_db
 uvicorn app.main:app --host 127.0.0.1 --port 2048 --reload
-```
+~~~
 
-推荐方式二：在项目根目录直接启动（适合 IDE 或 PowerShell）。
+也可以在根目录启动：
 
-```bash
+~~~powershell
 .venv311\Scripts\python.exe -m uvicorn app.main:app --app-dir apps/api-server --host 127.0.0.1 --port 2048 --reload
-```
+~~~
 
-## 当前推荐开发顺序
+### 启动前端
 
-1. 稳定前后端联调链路
-2. 补充训练启动与推理执行接口
-3. 继续扩展测试场景与结果分析
-4. 视效果决定是否新增其他基础设施病害任务方向
+~~~bash
+cd apps/admin-web
+npm install
+npm run dev
+~~~
 
-## 前端启动说明
+客户端位于 apps/client-web/，启动方式相同。默认管理端端口为 5500，客户端端口为 5180。
 
-- 管理端：在 `apps/admin-web/` 下执行 `npm run dev`（端口 `5500`）
-- 客户端：在 `apps/client-web/` 下执行 `npm run dev`（当前保留端口 `5180`）
+## 文档入口
 
-## 部署准备
+- [项目结构说明](项目结构说明.md)
+- [三端架构与迁移计划](docs/三端架构与迁移计划.md)
+- [数据库设计](docs/数据库设计.md)
+- [云部署与环境配置](docs/云部署与环境配置.md)
+- [裂缝检测训练记录](training/tasks/crack_detection/docs/训练记录与优化建议.md)
 
-- 后端环境变量模板：`apps/api-server/.env.example`
-- 管理端环境变量模板：`apps/admin-web/.env.example`
-- 客户端环境变量模板：`apps/client-web/.env.example`
-- Docker 编排模板：`docker-compose.yml`
-- 云部署说明：`docs/云部署与环境配置.md`
+## 当前开发重点
 
-## 当前默认开发凭据
+1. 稳定前后端联调链路。
+2. 接通训练和推理执行接口。
+3. 增加测试场景与结果分析。
+4. 根据验证结果再扩展其他基础设施病害任务。
 
-- 后台管理员账号：`admin`
-- 后台管理员密码：`1234`
-- PostgreSQL 连接账号：`postgres`
-- PostgreSQL 数据库名：`infra_defect_platform`
+## 本地演示配置
+
+仓库中的 admin / 1234 只用于本地开发初始化。部署到真实环境前，请修改管理员密码、数据库账号和所有环境变量。
